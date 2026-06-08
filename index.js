@@ -6,14 +6,8 @@ dotenv.config();
 
 const app = express();
 
-app.use(
-    cors({
-        origin: [
-            "http://localhost:5173",
-            process.env.FRONTEND_URL
-        ]
-    })
-);
+console.log("FRONTEND_URL =", process.env.FRONTEND_URL);
+app.use(cors());
 app.use(express.json());
 
 app.post("/api/chat", async (req, res) => {
