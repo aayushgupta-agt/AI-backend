@@ -6,7 +6,6 @@ dotenv.config();
 
 const app = express();
 
-console.log("FRONTEND_URL =", process.env.FRONTEND_URL);
 app.use(cors());
 app.use(express.json());
 app.post("/api/chat", async (req, res) => {
@@ -46,7 +45,7 @@ app.post("/api/chat", async (req, res) => {
             }
         );
 
-        const data = await response.json();
+    const data = await response.json();
 
         // console.log(
         //     JSON.stringify(data, null, 2)
@@ -61,12 +60,14 @@ app.post("/api/chat", async (req, res) => {
     } catch (error) {
         console.error(error);
 
-        res.status(500).json({
-            error: error.message,
-        });
-    }
+    res.status(500).json({
+      error: error.message,
+    });
+  }
 });
 
-app.listen(3001, () => {
-    console.log("Server running on port 3001");
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
